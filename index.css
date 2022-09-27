@@ -7,11 +7,15 @@ body {
     font-family: sans-serif;
 }
 
-button {
+input:nth-child(2) {
     padding: 0.5rem;
     text-align: center;
     background-color: rgb(87, 152, 87);
     border-radius: 5px;
     border: 0;
     color: white;
+}
+div {
+    width: 200px;
+    height: 200px;
 }
