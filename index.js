@@ -1,7 +1,7 @@
 const body = document.querySelector("body");
 const form = document.querySelector("form");
 const colorContainer = document.querySelector(".color-container");
-
+// random hex function
 function colorGenerator() {
     let randomColor = "#";
     for (let index = 0; index < 6; index++) {
