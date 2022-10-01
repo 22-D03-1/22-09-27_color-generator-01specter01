@@ -19,7 +19,6 @@ form.addEventListener("submit", function (event) {
 
     const inputOfColorNum = document.querySelector("#color-count");
 
-    // for (let numOfColor = +inputOfColorNum.value; numOfColor > 0; numOfColor--)
     for (
         let numOfColor = 0;
         numOfColor < +inputOfColorNum.value;
