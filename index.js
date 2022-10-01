@@ -1,40 +1,56 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const ul = document.querySelector("ul");
-    const liTest = document.getElementById("test");
+const body = document.querySelector("body");
+const form = document.querySelector("form");
+const colorContainer = document.querySelector(".color-container");
 
-    document.addEventListener("click", function (event) {
-        console.log("document", event.target, event.currentTarget);
-    });
+function colorGenerator() {
+    let randomColor = "#";
+    for (let index = 0; index < 6; index++) {
+        const randomNum = Math.floor(Math.random() * 16).toString(16);
+        randomColor += randomNum;
+    }
 
-    ul.addEventListener("click", function (event) {
-        console.log("ul", event.target, event.currentTarget);
-    });
+    return randomColor;
+}
 
-    liTest.addEventListener("click", function (event) {
-        console.log("li", event.target, event.currentTarget);
-    });
+console.log(colorGenerator());
 
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-        const task = form.elements.task.value;
+    const inputOfColorNum = document.querySelector("#color-count");
 
-        const newTask = document.createElement("li");
-        newTask.innerText = task;
+    // for (let numOfColor = +inputOfColorNum.value; numOfColor > 0; numOfColor--)
+    for (
+        let numOfColor = 0;
+        numOfColor < +inputOfColorNum.value;
+        numOfColor++
+    ) {
+        body.classList.add("body-block");
 
-        ul.appendChild(newTask);
-    });
+        const color = document.createElement("div");
+        color.classList.add("color");
 
-    ul.addEventListener("click", function (event) {
-        if (event.target.matches("li")) event.target.remove();
-    });
+        const colorName = colorGenerator();
+
+        color.style.backgroundColor = colorName;
+
+        colorContainer.append(color);
+
+        const closeButton = document.createElement("button");
+        closeButton.classList.add("close-btn");
+        closeButton.innerText = "x";
+
+        color.append(closeButton);
+
+        const hexOfColor = document.createElement("p");
+        hexOfColor.classList.add("color-hex");
+        hexOfColor.innerText = colorName;
+
+        color.append(hexOfColor);
+
+        closeButton.addEventListener("click", () => {
+            color.remove();
+        });
+    }
+    form.reset();
 });
-const setBg = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    document.body.style.backgroundColor = "#" + randomColor;
-    color.innerHTML = "#" + randomColor;
-};
-const genNew = document.querySelector("submit");
-genNew.addEventListener("click", setBg);
-setBg();
